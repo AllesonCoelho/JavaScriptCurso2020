@@ -1,0 +1,28 @@
+{
+  "name": "npm_class",
+  "version": "1.0.0",
+  "description": "Aula para o NPM",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npx babel index.js -o transpilled.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AllesonCoelho/Npm.git"
+  },
+  "keywords": [
+    "Javascript",
+    "npm",
+    "study"
+  ],
+  "author": "Coelho",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AllesonCoelho/Npm/issues"
+  },
+  "homepage": "https://github.com/AllesonCoelho/Npm#readme",
+  "dependencies": {
+    "moment": "^2.29.1"
+  }
+}
