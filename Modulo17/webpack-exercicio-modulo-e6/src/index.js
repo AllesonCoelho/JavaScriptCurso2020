@@ -1,6 +1,6 @@
-const Planet = require('./planet')
+import Planet from ('./planet')
 
-const planetOperations = require("./planet_operation")
+import {contertAUToKm} from ("./planet_operation")
 
 
 let planets = [
@@ -16,6 +16,6 @@ let planets = [
 ]
 
 planets.forEach(planet => {
-    distanceFromSun = planetOperations.contertAUToKm(planet.auToSun).toFixed(2)
+    let distanceFromSun = contertAUToKm(planet.auToSun).toFixed(2)
     console.log(`${planet.name} - ${planet.auToSun}AU ${distanceFromSun}km`)
 })
