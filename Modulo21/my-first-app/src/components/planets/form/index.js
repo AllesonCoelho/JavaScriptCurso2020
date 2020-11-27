@@ -4,13 +4,25 @@ import React, {Fragment, useState} from "react"
 const Form = (props) =>{
 
 
-    const [name, setName] = useState('')
+    const initialState = {
+        name: '',
+        description: '',
+        link: '',
+        img_url: ''
+    }
 
-    const handleChange = (event) => setName(event.target.value)
+
+    const [fields, setFields] = useState(initialState)
+
+    const handleFieldsChange = (e) => setFields({
+        ...fields, 
+        [e.currentTarget.name] : e.currentTarget.value
+    })
 
     const handleSubmit = event => {
-        props.addPlanet({name : name})
+        props.addPlanet(fields)
         event.preventDefault()
+        setFields(initialState)
     }
 
 
@@ -18,8 +30,24 @@ const Form = (props) =>{
         <Fragment>
             <form onSubmit={handleSubmit}>
                 <div>
-                    <label htmlFor="name">name</label>
-                    <input id="name" type="text" value={name} onChange={handleChange}></input>
+                    <label htmlFor="name">Name: </label>
+                    <input id="name" type="text" name="name" value={fields.name} onChange={handleFieldsChange}></input>
+
+                </div>
+
+                <div>
+                    <label htmlFor="description">Description: </label>
+                    <input id="description" type="text" name="description" value={fields.description} onChange={handleFieldsChange}></input>
+
+                </div>
+                <div>
+                    <label htmlFor="link">Link: </label>
+                    <input id="link" type="text" name="link" value={fields.link} onChange={handleFieldsChange}></input>
+
+                </div>
+                <div>
+                    <label htmlFor="img_url">Imagem: </label>
+                    <input id="img_url" type="text" name="img_url" value={fields.img_url} onChange={handleFieldsChange}></input>
 
                 </div>
                 <br/>
