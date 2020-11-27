@@ -15,32 +15,33 @@ const clickOnPlanet = (name) =>{
 }
 */
 
-async function getPlanets(){
-    let response = await fetch('http://localhost:3000/api/planets.json')
-    let data = await response.json()
-    return data
-}
-
 class Planets extends React.Component{
     constructor(props){
         super(props)
         this.state = {
                 planets: [
+                    {
+                        name:"Mercurio",
+                        description:"Proident anim tempor enim amet quis adipisicing dolore mollit. Nostrud exercitation nisi ex reprehenderit deserunt consectetur ut labore incididunt Lorem officia. Dolor amet in consequat anim. Consectetur non deserunt aute culpa minim anim duis laboris quis reprehenderit deserunt. Est commodo mollit ullamco sunt qui non exercitation ex quis aliqua fugiat.",    
+                        img_url:"https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Mercury_in_color_-_Prockter07-edit1.jpg/600px-Mercury_in_color_-_Prockter07-edit1.jpg",
+                        link:"https://pt.wikipedia.org/wiki/Merc%C3%BArio_(planeta)",
+                        /*clickOnPlanet={clickOnPlanet}*/
+                        title_with_underline :true,
+                        grey:true
+                    },
+                    {
+                        name:"Marte",
+                        description:"Proident anim tempor enim amet quis adipisicing dolore mollit. Nostrud exercitation nisi ex reprehenderit deserunt consectetur ut labore incididunt Lorem officia. Dolor amet in consequat anim. Consectetur non deserunt aute culpa minim anim duis laboris quis reprehenderit deserunt. Est commodo mollit ullamco sunt qui non exercitation ex quis aliqua fugiat.",
+                        img_url:"https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/OSIRIS_Mars_true_color.jpg/600px-OSIRIS_Mars_true_color.jpg"
+                        /*link="https://pt.wikipedia.org/wiki/Marte_(planeta)"*/
+                        /*clickOnPlanet={clickOnPlanet}*/
+
+                    }
+
 
 
                 ]
         }
-
-    }
-
-
-
-    componentDidMount(){
-        getPlanets().then(data =>{
-            this.setState(state =>({
-                planets: data['planets']
-            }))
-        })
 
     }
 
