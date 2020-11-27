@@ -1,5 +1,6 @@
 import React, {Fragment, useState, useEffect} from 'react'
 import Planet from './planet'
+import Form from './form'
 
 /*
 const showMessage = () =>{
@@ -34,31 +35,24 @@ const Planets = () =>{
             setPlanets(data['planets'])
         })
     }, [])
+
+    const addPlanet = (new_planet) =>{
+        setPlanets([...planets, new_planet])
+    }
     
 
 
 
 
 
-    const removeLast = () =>{
-        let new_planets = [...planets]
-        new_planets.pop()
-        setPlanets(new_planets)
-
-    }
-
-    const duplicateLastPlanet = () =>{
-        let last_planet = planets[planets.length - 1]//gerando uma chave que seleciona dentro de um array a posicao sendo [1,2,3].length - 1 que daria 2 
-        setPlanets([...planets, last_planet])
-    }
-
+    
 
     return (//o fragment eh usado para que consiga devolver o h3 e outras tags sem precisa criar outra div
         <Fragment>
             <h3>Planets list</h3>
             {/*<button onClick={showMessage}>Show Message</button> */}
-            <button onClick={removeLast}>Remove Last</button>
-            <button onClick={duplicateLastPlanet}>Add Last Planet</button>
+            <hr />
+            <Form addPlanet={addPlanet}/>
             <hr />
             {planets.map((planet, index) =>
                 <Planet
