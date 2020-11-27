@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {Fragment, useState, useEffect} from 'react'
 import GrayImg from '../../shared/grey_img'
 import DescriptionWithLink from "../../shared/description_with_link"
 
@@ -11,45 +11,43 @@ async function getSatellites(id){
     return data
 }
 
-class Planet extends React.Component{
-    constructor(props){
-        super(props)
-        this.state = {
-            satellites: []
-        }
 
-    }
+const Planet = (props) =>{
+    const [satellites, setSatellites] = useState([])
+
+    /*
     componentDidMount(){
-        getSatellites(this.props.id).then(data => {
-            this.setState(state =>({
-                satellites: data["satellites"]
-            }))
-        })
+        
     }
+    */
+    useEffect(() => {
+        getSatellites(props.id).then(data => {
+            setSatellites(data["satellites"])
+        })
+
+    }, [])
 
 
-    
-    render(){
-        let title
-        if (this.props.title_with_underline)
-            title = <h4><u>{this.props.name}</u></h4>
-        else
-            title = <h4>{this.props.name}</h4>
-        return (
-            <div> 
-            
-                {title}
-                <DescriptionWithLink description={this.props.description} link={this.props.link}/>
-                <GrayImg img_url={this.props.img_url} gray={this.props.gray}/>
-                <h4>Satelites</h4>
-                <ul>
-                {this.state.satellites.map((satellites, index)=>
-                <li key={index}>{satellites.name}</li>
+    let title
+    if (props.title_with_underline)
+        title = <h4><u>{props.name}</u></h4>
+    else
+        title = <h4>{props.name}</h4>
+    return (
+        <div>
+
+            {title}
+            <DescriptionWithLink description={props.description} link={props.link} />
+            <GrayImg img_url={props.img_url} gray={props.gray} />
+            <h4>Satelites</h4>
+            <ul>
+                {satellites.map((satellites, index) =>
+                    <li key={index}>{satellites.name}</li>
                 )}
-                </ul>
-                
-    
-                {/* <h4>Satelites</h4>
+            </ul>
+
+
+            {/* <h4>Satelites</h4>
                 <ul>
                     {
                         ['a', 'b', 'c', 'd'].map((n) =>
@@ -58,13 +56,13 @@ class Planet extends React.Component{
                     }
                 </ul>
                 */}
-                <hr/>
-            </div>
-                
-            
-        )
+            <hr />
+        </div>
 
-    }
+
+    )
+
+    
 }
 
 
