@@ -1,12 +1,11 @@
 import React from 'react'
 import Planets from './components/planets'
-
-
+import Routes from './routes'
 
 function App() {
   return (
     <div>
-      <Planets/>
+      <Routes/>
 
     </div>
   );
