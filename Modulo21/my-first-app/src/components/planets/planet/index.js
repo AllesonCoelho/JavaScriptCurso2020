@@ -2,6 +2,8 @@ import React, {Fragment, useState, useEffect} from 'react'
 import GrayImg from '../../shared/grey_img'
 import DescriptionWithLink from "../../shared/description_with_link"
 
+import {Link} from 'react-router-dom'
+
 
 
 
@@ -16,9 +18,10 @@ const Planet = (props) =>{
     return (
         <div>
 
-            {title}
+            <Link to={`/planet/${props.id}`}>{title}</Link>
             <DescriptionWithLink description={props.description} link={props.link} />
             <GrayImg img_url={props.img_url} gray={props.gray} />
+            
 
 
             <hr />
@@ -29,20 +32,5 @@ const Planet = (props) =>{
 
     
 }
-
-
-
-/*const Planet = (props) =>{//Colocar uma funcao anonima passando pro onclick que chama a outra funcao {/* onClick={() =>props.clickOnPlanet(props.name)}} 
-//o fragment eh usado para que consiga devolver o h3 e outras tags sem precisa criar outra div
-
-
-    //const names = ['a', 'b', 'c', 'd']//nao abrir chaves aqui 
-
-    
-
-    
-    
-
-}*/
 
 export default Planet

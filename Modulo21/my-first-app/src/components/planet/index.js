@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import GrayImg from '../shared/grey_img'
 import DescriptionWithLink from "../shared/description_with_link"
 import Form from './form'
-import {useParams} from 'react-router-dom'
+import {useParams, useHistory, Redirect} from 'react-router-dom'
 
 async function getPlanet(id){
     let response = await fetch(`http://localhost:3000/api/${id}.json`)
@@ -14,14 +14,22 @@ async function getPlanet(id){
 const Planet = () =>{
     const [satellites, setSatellites] = useState([])
     const [planet, setPlanet] = useState({})
+    const [redirect, setRedirect] = useState(false)
     let { id } = useParams()
+    let history = useHistory()
 
     useEffect(() => {
         getPlanet(id).then(data => {
             setSatellites(data["satellites"]);
             setPlanet(data["data"]);
+        }, error => {
+            setRedirect(true)
         })
     }, [])
+
+    const goToPlanets = () =>{
+        history.push('/')
+    }
 
     const addSatellites = (new_satellite) =>{
         setSatellites([...satellites, new_satellite])
@@ -33,6 +41,13 @@ const Planet = () =>{
         title = <h4><u>{planet.name}</u></h4>
     else
         title = <h4>{planet.name}</h4>
+
+        if(redirect)
+        return <Redirect to='/'/>
+
+
+
+
     return (
         <div>
 
@@ -52,6 +67,7 @@ const Planet = () =>{
 
 
             <hr />
+            <button type="button" onClick={goToPlanets}>Voltar a Listagem</button>
         </div>
 
 
